@@ -1,9 +1,12 @@
+"use client"
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const Products = ({dt}) => {
+  const router = useRouter()
   return (
-    <div className='  border-2 rounded-md shadow-lg mb-5 ' >
+    <div onClick={()=>router.push(`product/${dt?.id}`)} className='  border-2 rounded-md shadow-lg mb-5 cursor-pointer' >
       <div className=' min-w-[390px] ml-3 mt-2'>
       <Image className=' rounded'  width={380} height={400} src={dt.avatar} />
       </div>
