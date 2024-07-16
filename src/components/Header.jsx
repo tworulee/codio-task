@@ -1,6 +1,5 @@
 import React from "react";
-import { CiDark } from "react-icons/ci";
-import { MdOutlineAdd } from "react-icons/md";
+import ThemeComp from "./ThemeComp";
 const Header = () => {
   return (
     <>
@@ -9,14 +8,14 @@ const Header = () => {
           Product Management
         </div>
         <div className="flex flex-wrap p-4 space-x-7">
-          <CiDark className="cursor-pointer " size={30} />
-          <button className="font-medium">Ürün Ekleme</button>
+          <ThemeComp />
           <select className="font-medium">
             <option value="default">Sıralama</option>
             <option value="price">price</option>
             <option value="popularity">popularity</option>
             <option value="date">date</option>
           </select>
+          <button className="font-medium">Ürün Ekleme</button>
         </div>
       </div>
     </>
