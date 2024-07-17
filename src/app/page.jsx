@@ -1,5 +1,4 @@
 import Products from "@/components/Products";
-import React from "react";
 
 const Page = async () => {
   const res = await fetch(
@@ -11,9 +10,9 @@ const Page = async () => {
   // console.log(data, "data");
 
   return (
-    <div className='flex flex-wrap items-center justify-center  gap-8 '>
+    <div className="flex flex-wrap items-center justify-center  gap-8 ">
       {data?.map((dt) => (
-        <Products  dt={dt} key={dt.id} />
+        <Products dt={dt} key={dt.id} />
       ))}
     </div>
   );

@@ -1,14 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const DeleteButton = ( {id}) => {
   const router = useRouter();
   const [message, setMessage] = useState("");
 
+  
+
   const handleDeleteClick = async (e) => {
     e.stopPropagation();
-    try {
       const response = await fetch(
         `https://66957d684bd61d8314cb71a8.mockapi.io/codio/product/${id}`,
         {
@@ -25,10 +26,7 @@ const DeleteButton = ( {id}) => {
         const data = await response.json();
         setMessage(`Hata: ${data.error}`);
       }
-    } catch (error) {
-      console.error("Silme işlemi sırasında bir hata oluştu:", error.message);
-      setMessage("Silme işlemi sırasında bir hata oluştu");
-    }
+    
   };
   return (
     <>
