@@ -1,3 +1,5 @@
+import DeleteButton from '@/components/DeleteButton'
+import EditButton from '@/components/EditButton'
 import Image from 'next/image'
 import React from 'react'
 
@@ -9,7 +11,7 @@ const getProduct = async(id)=>{
 const Page = async({params}) => {
     const id = params.id
     const productDetail = await getProduct(id)
-
+    
   return (
     <div className='border-2 rounded-md shadow-lg max-w-md mx-auto p-4'>
   <div className='flex items-center justify-center ml-1 mt-2'>
@@ -22,8 +24,8 @@ const Page = async({params}) => {
     <h1>Oluşturulma Zamanı: {productDetail.createdAt}</h1>
   </div>
   <div className='flex items-center justify-center gap-8'>
-    <button className='border-2 rounded-md p-2 hover:bg-slate-500 mb-3'>Düzenle</button>
-    <button className='border-2 rounded-md p-2 hover:bg-amber-300 mb-3'>Sil</button>
+    <EditButton id={id} />
+    <DeleteButton id={id} />
   </div>
 </div>
 
