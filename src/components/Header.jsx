@@ -8,9 +8,9 @@ const Header = () => {
   return (
     <>
       <div className="flex flex-wrap justify-center items-center h-30 p-5 space-x-20 ">
-        <div className="rounded-lg p-3 text-3xl font-bold">
+        <Link href={"/"}><div className="rounded-lg p-3 text-3xl font-bold">
           Product Management
-        </div>
+        </div></Link>
         <div className="flex flex-wrap p-4 space-x-7">
           <ThemeComp />
           <select className="font-medium">

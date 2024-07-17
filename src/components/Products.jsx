@@ -8,7 +8,7 @@ const Products = ({dt}) => {
   return (
     <div onClick={()=>router.push(`product/${dt?.id}`)} className='  border-2 rounded-md shadow-lg mb-5 cursor-pointer' >
       <div className=' min-w-[390px] ml-3 mt-2'>
-      <Image className=' rounded'  width={380} height={400} src={dt.avatar} />
+      <Image alt='abstract' className=' rounded'  width={380} height={400} src={dt.avatar} />
       </div>
       <div className='text-center m-4 '>
       <h1 className='font-black'> {dt.name}</h1>
