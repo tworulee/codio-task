@@ -1,6 +1,10 @@
+
 import React from "react";
 import ThemeComp from "./ThemeComp";
+import Link from "next/link";
+
 const Header = () => {
+ 
   return (
     <>
       <div className="flex flex-wrap justify-center items-center h-30 p-5 space-x-20 ">
@@ -15,7 +19,7 @@ const Header = () => {
             <option value="popularity">popularity</option>
             <option value="date">date</option>
           </select>
-          <button className="font-medium">Ürün Ekleme</button>
+          <Link href={"/create"} ><button   className="font-medium">Ürün Ekleme</button></Link>
         </div>
       </div>
     </>
