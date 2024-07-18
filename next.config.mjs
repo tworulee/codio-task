@@ -15,10 +15,7 @@ const nextConfig = {
     compiler: {
       styledComponents: true,
     },
-    swcMinify: false,
-    experimental: {
-      forceSwcTransforms: true,
-    },
+    
 };
 
 export default nextConfig;
