@@ -1,7 +1,6 @@
 import DeleteButton from "@/components/DeleteButton";
 import EditButton from "@/components/EditButton";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 
 const getProduct = async (id) => {
@@ -29,6 +28,7 @@ const Page = async ({ params }) => {
         <h1 className="font-black">{productDetail.name}</h1>
         <h1>Marka: {productDetail.brand}</h1>
         <h1>Fiyat: {productDetail.price}</h1>
+        <h1>id {productDetail.id}</h1>
         <h1>Oluşturulma Zamanı: {productDetail.createdAt}</h1>
       </div>
       <div className="flex items-center justify-center gap-8">

@@ -1,26 +1,86 @@
-"use client"
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+"use client";
+import React, { useEffect, useState } from "react";
+import Product from "./Product";
 
-const Products = ({dt}) => {
-  const router = useRouter()
+const Products = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [sortType, setSortType] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          "https://66957d684bd61d8314cb71a8.mockapi.io/codio/product"
+          
+        );
+        const data = await res.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSortChange = (e) => {
+    const selectedSortType = e.target.value;
+    setSortType(selectedSortType);
+    sortProducts(selectedSortType);
+  };
+
+  const sortProducts = (selectedSortType) => {
+    let sortedProducts = [...products];
+    switch (selectedSortType) {
+      case "name_asc":
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "name_desc":
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case "price_asc":
+        sortedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "price_desc":
+        sortedProducts.sort((a, b) => b.price - a.price);
+        break;
+      default:
+        break;
+    }
+    setProducts(sortedProducts);
+  };
+
+  if (loading) return <p>Yükleniyor...</p>;
+  if (error) return <p>Hata: {error.message}</p>;
 
   return (
-    <div onClick={()=>router.push(`product/${dt?.id}`)} className='  border-2 rounded-md shadow-lg mb-5 cursor-pointer' >
-      <div className=' min-w-[390px] ml-3 mt-2'>
-      <Image alt='abstract' className=' rounded'  width={380} height={400} src={dt.avatar} />
+    <div>
+      <div className="flex items-center mb-4  ">
+        <div className="p-4 rounded-lg shadow-md bg-white dark:bg-gray-800 w-full max-w-sm mx-auto">
+          <select
+            className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 font-medium"
+            onChange={handleSortChange}
+            value={sortType}
+          >
+            <option value="">Sıralama</option>
+            <option value="name_asc">Name: A to Z</option>
+            <option value="name_desc">Name: Z to A</option>
+            <option value="price_asc">Fiyat Artan</option>
+            <option value="price_desc">Fiyat Azalan</option>
+          </select>
+        </div>
       </div>
-      <div className='text-center m-4 '>
-      <h1 className='font-black'> {dt.name}</h1>
-      <h1>Marka: {dt.brand}</h1>
-      <h1>Fiyat: {dt.price}</h1>
-      <h1>Oluşturulma Zamanı: {dt.createdAt}</h1>
+      <div className="flex flex-wrap items-center justify-center gap-8">
+        {products.map((dt) => (
+          <Product dt={dt} key={dt.id} />
+        ))}
       </div>
-      
-      
     </div>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
