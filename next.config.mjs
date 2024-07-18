@@ -16,6 +16,9 @@ const nextConfig = {
       styledComponents: true,
     },
     swcMinify: false,
+    experimental: {
+      forceSwcTransforms: true,
+    },
 };
 
 export default nextConfig;
