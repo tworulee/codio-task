@@ -6,7 +6,7 @@ const EditButton = ({productDetail}) => {
     const router = useRouter()
   return (
     <>
-      <button onClick={()=>router.push(`/editpage/${productDetail?.id}`)} className='border-2 rounded-md p-2 hover:bg-slate-500 mb-3'>Düzenle</button>
+      <button onClick={()=>router.push(`/editpage/${productDetail?.id}`)} className='border-2 rounded-md p-2 hover:border-gray-700 mb-3'>Düzenle</button>
     </>
   )
 }
