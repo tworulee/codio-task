@@ -11,7 +11,10 @@ const nextConfig = {
         hostname: '**',
       },
     ],
-    }
+    },
+    compiler: {
+      styledComponents: true,
+    },
 };
 
 export default nextConfig;
