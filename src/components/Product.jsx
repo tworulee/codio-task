@@ -4,29 +4,24 @@ import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import { useEffect, useState } from "react";
 
-
 const Product = ({ dt }) => {
-  
-  const [productDetail,setProductDetail] = useState([])
+  const [productDetail, setProductDetail] = useState([]);
 
-  const idxsd= dt.id
-  useEffect(()=>{
+  const idxsd = dt.id;
+  useEffect(() => {
     const getProduct = async () => {
       const res = await fetch(
         `https://66957d684bd61d8314cb71a8.mockapi.io/codio/product/${dt.id}`
       );
-      const data =  await res.json();
-      setProductDetail(data)
+      const data = await res.json();
+      setProductDetail(data);
     };
-    
-    getProduct()
-  },[])
+
+    getProduct();
+  }, []);
 
   return (
-    <div
-      className="  border-2 rounded-md shadow-lg mb-5 "
-    >
-    
+    <div className="  border-2 rounded-md shadow-lg mb-5 ">
       <div className=" min-w-[390px] ml-3 mt-2">
         <Image
           alt="abstract"
@@ -43,7 +38,7 @@ const Product = ({ dt }) => {
         <h1>Oluşturulma Zamanı: {dt.createdAt}</h1>
       </div>
       <div className="flex items-center justify-center gap-8">
-        <EditButton productDetail={productDetail}  />
+        <EditButton productDetail={productDetail} />
         <DeleteButton idxsd={idxsd} />
       </div>
     </div>
