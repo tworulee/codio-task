@@ -13,7 +13,6 @@ const Products = () => {
       try {
         const res = await fetch(
           "https://66957d684bd61d8314cb71a8.mockapi.io/codio/product"
-          
         );
         const data = await res.json();
         setProducts(data);
@@ -67,8 +66,8 @@ const Products = () => {
             value={sortType}
           >
             <option value="">Sıralama</option>
-            <option value="name_asc">Name: A to Z</option>
-            <option value="name_desc">Name: Z to A</option>
+            <option value="name_asc">A'dan Z'ye</option>
+            <option value="name_desc">Z'den A'ya</option>
             <option value="price_asc">Fiyat Artan</option>
             <option value="price_desc">Fiyat Azalan</option>
           </select>

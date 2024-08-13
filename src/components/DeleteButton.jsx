@@ -1,24 +1,23 @@
 "use client";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import {  useState } from "react";
 
-const DeleteButton = ({ id }) => {
-  const router = useRouter();
+const DeleteButton = ({ idxsd }) => {
+ 
   const [message, setMessage] = useState("");
 
   const handleDeleteClick = async (e) => {
     e.stopPropagation();
     const response = await fetch(
-      `https://66957d684bd61d8314cb71a8.mockapi.io/codio/product/${id}`,
+      `https://66957d684bd61d8314cb71a8.mockapi.io/codio/product/${idxsd}`,
       {
         method: "DELETE",
       }
     );
 
     if (response.ok) {
-      setMessage("Ürün başarıyla silindi. Yönlendiriliyosunuz!");
+      setMessage("Ürün başarıyla silindi.");
       setTimeout(() => {
-        router.push("/");
+        window.location.reload();
       }, 2000);
     } else {
       const data = await response.json();
