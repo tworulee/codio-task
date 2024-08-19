@@ -3,20 +3,21 @@ import Image from "next/image";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import { useEffect, useState } from "react";
+import { fetchProductsById } from "@/utils/api";
 
 const Product = ({ dt }) => {
   const [productDetail, setProductDetail] = useState([]);
 
   const idxsd = dt.id;
-  useEffect(() => {
-    const getProduct = async () => {
-      const res = await fetch(
-        `https://66957d684bd61d8314cb71a8.mockapi.io/codio/product/${dt.id}`
-      );
-      const data = await res.json();
-      setProductDetail(data);
-    };
 
+  const getProduct = async () => {
+    
+    const data = await fetchProductsById(dt.id)
+    setProductDetail(data);
+  };
+
+  
+  useEffect(() => {
     getProduct();
   }, []);
 

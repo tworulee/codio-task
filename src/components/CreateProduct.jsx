@@ -1,32 +1,25 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { addProduct } from "@/utils/api";
 
 const CreateProduct = () => {
   const router = useRouter();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [message, setMessage] = useState("");
 
   const onSubmit = async (data) => {
-    const response = await fetch(
-      "https://66957d684bd61d8314cb71a8.mockapi.io/codio/product",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    );
+    await addProduct(data);
 
-    if (response.ok) {
-      setTimeout(() => {
-        router.push("/");
-      }, 2000);
-    } else {
-      const errorData = await response.json();
-      console.error(`Error: ${errorData.error}`);
-    }
+    setMessage("Ürün başarıyla oluşturuldu.");
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
   };
 
   return (
@@ -104,6 +97,9 @@ const CreateProduct = () => {
           >
             Create Product
           </button>
+          <div className="flex justify-center items-center">
+            {message && <p className="text-green-600 text-center">{message}</p>}
+          </div>
         </form>
       </div>
     </div>

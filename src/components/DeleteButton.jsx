@@ -1,28 +1,18 @@
 "use client";
-import {  useState } from "react";
+import { useState } from "react";
+import { deleteProduct } from "@/utils/api";
 
 const DeleteButton = ({ idxsd }) => {
- 
   const [message, setMessage] = useState("");
 
   const handleDeleteClick = async (e) => {
     e.stopPropagation();
-    const response = await fetch(
-      `https://66957d684bd61d8314cb71a8.mockapi.io/codio/product/${idxsd}`,
-      {
-        method: "DELETE",
-      }
-    );
+     await deleteProduct(idxsd);
 
-    if (response.ok) {
-      setMessage("Ürün başarıyla silindi.");
-      setTimeout(() => {
-        window.location.reload();
-      }, 2000);
-    } else {
-      const data = await response.json();
-      setMessage(`Hata: ${data.error}`);
-    }
+    setMessage("Ürün başarıyla silindi.");
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
   return (
     <>

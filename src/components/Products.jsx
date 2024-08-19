@@ -1,29 +1,21 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Product from "./Product";
+import { fetchProducts } from "@/utils/api";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [sortType, setSortType] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(
-          "https://66957d684bd61d8314cb71a8.mockapi.io/codio/product"
-        );
-        const data = await res.json();
-        setProducts(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
+  const loadProducts = async () => {
+    const data = await fetchProducts();
+    setProducts(data);
+    setLoading(false);
+  };
 
-    fetchData();
+  useEffect(() => {
+    loadProducts();
   }, []);
 
   const handleSortChange = (e) => {
@@ -54,7 +46,6 @@ const Products = () => {
   };
 
   if (loading) return <p>Yükleniyor...</p>;
-  if (error) return <p>Hata: {error.message}</p>;
 
   return (
     <div>
