@@ -4,7 +4,6 @@ const Page = async () => {
   return (
     <div>
       <Products />
-      
     </div>
   );
 };

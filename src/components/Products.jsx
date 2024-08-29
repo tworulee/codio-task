@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import { fetchProducts } from "@/utils/api";
+import Loading from "@/app/loading";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -45,7 +46,7 @@ const Products = () => {
     setProducts(sortedProducts);
   };
 
-  if (loading) return <p>Yükleniyor...</p>;
+   if (loading) return <Loading/>;
 
   return (
     <div>

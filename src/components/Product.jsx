@@ -11,12 +11,10 @@ const Product = ({ dt }) => {
   const idxsd = dt.id;
 
   const getProduct = async () => {
-    
-    const data = await fetchProductsById(dt.id)
+    const data = await fetchProductsById(dt.id);
     setProductDetail(data);
   };
 
-  
   useEffect(() => {
     getProduct();
   }, []);
